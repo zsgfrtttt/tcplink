@@ -38,6 +38,7 @@ public class Client {
             String serverLine = ServerReader.readLine();
             if ("bye".equalsIgnoreCase(serverLine)) {
                 conti = false;
+                printStream.println("bye");
             }else{
                 System.out.println(serverLine);
             }

@@ -1,6 +1,7 @@
-package tcp_udp.server;
+package com.csz.server;
 
-import tcp_udp.contants.TCPContants;
+
+import com.csz.foo.contants.TCPContants;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

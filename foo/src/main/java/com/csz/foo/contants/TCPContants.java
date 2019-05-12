@@ -1,4 +1,4 @@
-package tcp_udp.contants;
+package com.csz.foo.contants;
 
 public class TCPContants {
     public static final int PORT_SERVER = 30402;
