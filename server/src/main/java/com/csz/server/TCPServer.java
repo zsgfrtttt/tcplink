@@ -106,7 +106,7 @@ public class TCPServer {
 
         @Override
         public void onNewMessageArrived(ClientHandler clientHandler, String msg) {
-            System.out.println("tcp:服务器受到消息：-  " + clientHandler.getClientInfo() + "  :  " + msg);
+            System.out.println("tcp:服务器收到消息：-  " + clientHandler.getClientInfo() + "  :  " + msg);
             forwardingExecutorThreadPool.execute(() -> {
                 synchronized (TCPServer.this){
                     for (ClientHandler handler : handlers) {

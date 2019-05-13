@@ -11,7 +11,6 @@ public class Server {
         TCPServer tcpServer = new TCPServer(TCPContants.PORT_SERVER);
         boolean isSuccessed = tcpServer.start();
         ServerProvider.start(TCPContants.PORT_SERVER);
-
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String line;
         do{

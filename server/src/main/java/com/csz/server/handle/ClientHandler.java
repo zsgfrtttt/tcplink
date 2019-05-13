@@ -1,6 +1,4 @@
 package com.csz.server.handle;
-
-
 import com.csz.link.util.CloseUtil;
 
 import java.io.*;
@@ -76,6 +74,7 @@ public class ClientHandler {
                         ClientHandler.this.exitBySelf();
                     } else {
                         clientHandleCallback.onNewMessageArrived(ClientHandler.this, line);
+                        exitBySelf();
                     }
                 } while (!done);
             } catch (Exception e) {

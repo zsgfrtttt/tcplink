@@ -1,4 +1,3 @@
-rootProject.name = 'caishuzhan'
 include 'link'
 include 'client'
 include 'server'
