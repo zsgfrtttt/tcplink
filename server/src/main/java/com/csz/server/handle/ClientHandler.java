@@ -74,7 +74,6 @@ public class ClientHandler {
                         ClientHandler.this.exitBySelf();
                     } else {
                         clientHandleCallback.onNewMessageArrived(ClientHandler.this, line);
-                        exitBySelf();
                     }
                 } while (!done);
             } catch (Exception e) {
@@ -108,7 +107,7 @@ public class ClientHandler {
             if (done){
                 return;
             }
-            executorService.submit(new WriteRunnable(line));
+            executorService.execute(new WriteRunnable(line));
         }
 
         void exit() {
