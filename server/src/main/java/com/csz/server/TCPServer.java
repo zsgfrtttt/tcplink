@@ -80,7 +80,7 @@ public class TCPServer {
                         continue;
                     }
 
-                    Iterator<SelectionKey> keyIterator = selector.keys().iterator();
+                    Iterator<SelectionKey> keyIterator = selector.selectedKeys().iterator();
                     while (keyIterator.hasNext()) {
                         if (done) {
                             break;
@@ -105,6 +105,7 @@ public class TCPServer {
                             e.printStackTrace();
                             System.out.println("客户端链接异常：" + e.getMessage());
                         }
+
                     }
 
                 } catch (Exception e) {

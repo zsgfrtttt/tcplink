@@ -27,7 +27,7 @@ public class ClientHandler {
         Selector readSelector = Selector.open();
         Selector writeSelector = Selector.open();
         socketChannel.register(readSelector, SelectionKey.OP_READ);
-        socketChannel.register(readSelector, SelectionKey.OP_WRITE);
+        socketChannel.register(writeSelector, SelectionKey.OP_WRITE);
 
         readHandler = new ClientReadHandler(readSelector);
         writeHandler = new ClientWriteHandler(writeSelector);
@@ -86,7 +86,7 @@ public class ClientHandler {
                         continue;
                     }
 
-                    Iterator<SelectionKey> keyIterator = selector.keys().iterator();
+                    Iterator<SelectionKey> keyIterator = selector.selectedKeys().iterator();
                     while (keyIterator.hasNext()) {
                         if (done) {
                             break;
@@ -155,7 +155,7 @@ public class ClientHandler {
             private final String text;
 
             public WriteRunnable(String line) {
-                this.text = line;
+                this.text = line + "\n";
             }
 
             @Override
@@ -167,7 +167,7 @@ public class ClientHandler {
                     byteBuffer.clear();
                     byteBuffer.put(text.getBytes());
                     byteBuffer.flip();
-                    while (!done && byteBuffer.hasRemaining()) {
+                    while ((!done) && byteBuffer.hasRemaining()) {
                         try {
                             int len = socketChannel.write(byteBuffer);
                             if (len < 0){
