@@ -100,7 +100,6 @@ public class TCPServer {
                             synchronized (TCPServer.this) {
                                 handlers.add(handler);
                             }
-                            handler.readToPrint();
                         } catch (Exception e) {
                             e.printStackTrace();
                             System.out.println("客户端链接异常：" + e.getMessage());
@@ -129,7 +128,6 @@ public class TCPServer {
 
         @Override
         public void onNewMessageArrived(ClientHandler clientHandler, String msg) {
-            System.out.println("tcp:服务器收到消息：-  " + clientHandler.getClientInfo() + "  :  " + msg);
             forwardingExecutorThreadPool.execute(() -> {
                 synchronized (TCPServer.this) {
                     for (ClientHandler handler : handlers) {
